@@ -4,10 +4,11 @@ namespace DevIO.Business.Interfaces
 {
     public interface IFornecedorRepository : IRepository<Fornecedor>
     {
-        Task<Fornecedor> ObterFornecedorEndereco(Guid id);
-        Task<Fornecedor> ObterFornecedorProdutosEndereco(Guid id);
+        Task<Fornecedor> ObterFornecedorEnderecoAsync(Guid id);
+        Task<Fornecedor> ObterFornecedorProdutosEnderecoAsync(Guid id);
 
         // Convenção do DDD - Um repositório por agregação
-        Task<Endereco> ObterEnderecoPorFornecedor(Guid fornecedorId);
+        Task<Endereco> ObterEnderecoPorFornecedorAsync(Guid fornecedorId);
+        Task RemoverEnderecoFornecedorAsync(Endereco endereco);
     }
 }
