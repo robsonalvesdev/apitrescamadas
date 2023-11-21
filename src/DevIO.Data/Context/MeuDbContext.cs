@@ -5,8 +5,10 @@ namespace DevIO.Data.Context
 {
     public class MeuDbContext : DbContext
     {
-        public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options) { 
-
+        public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options) 
+        {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         public DbSet<Produto> Produtos { get; set; }
@@ -24,6 +26,26 @@ namespace DevIO.Data.Context
                 relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            var nomeCampoDataDadastro = "DataCadastro";
+
+            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty(nomeCampoDataDadastro) != null))
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Property(nomeCampoDataDadastro).CurrentValue = DateTime.Now;
+                }
+
+                if (entry.State == EntityState.Modified)
+                {
+                    entry.Property(nomeCampoDataDadastro).IsModified = false;
+                }
+            }
+
+            return base.SaveChangesAsync(cancellationToken);
         }
 
     }
