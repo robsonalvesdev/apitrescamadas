@@ -15,7 +15,7 @@ namespace DevIO.Business.Services
 
         public async Task AdicionarAsync(Fornecedor fornecedor)
         {
-            if (!ExecutarValidacao<FornecedorValidation, Fornecedor>(new(), fornecedor) || !ExecutarValidacao<EnderecoValidation, Endereco>(new(), fornecedor.Endereco)) return;
+            if (!ExecutarValidacao<FornecedorValidation, Fornecedor>(new(), fornecedor) || !ExecutarValidacao<EnderecoValidation, Endereco>(new(), fornecedor.Endereco!)) return;
 
             if (_fornecedorRepository.BuscarAsync(f => f.Documento == fornecedor.Documento).Result.Any())
             {
@@ -49,7 +49,7 @@ namespace DevIO.Business.Services
                 return;
             }
 
-            if (fornecedor.Produtos.Any())
+            if (fornecedor.Produtos!.Any())
             {
                 Notificar("O fornecedor possue produtos cadastrados");
                 return;
