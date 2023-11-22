@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIO.Data", "src\DevIO.Data\DevIO.Data.csproj", "{4C6B2F85-2975-4F83-8E4D-9A28667FC4F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevIO.Data", "src\DevIO.Data\DevIO.Data.csproj", "{4C6B2F85-2975-4F83-8E4D-9A28667FC4F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIO.Business", "src\DevIO.Business\DevIO.Business.csproj", "{BD8360AE-3B1D-4AC2-A968-04ECDDE28D39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevIO.Business", "src\DevIO.Business\DevIO.Business.csproj", "{BD8360AE-3B1D-4AC2-A968-04ECDDE28D39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevIO.Api", "src\DevIO.Api\DevIO.Api.csproj", "{D18625AD-7914-494F-B6ED-C3B9F7691D36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{BD8360AE-3B1D-4AC2-A968-04ECDDE28D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD8360AE-3B1D-4AC2-A968-04ECDDE28D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD8360AE-3B1D-4AC2-A968-04ECDDE28D39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D18625AD-7914-494F-B6ED-C3B9F7691D36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D18625AD-7914-494F-B6ED-C3B9F7691D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D18625AD-7914-494F-B6ED-C3B9F7691D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D18625AD-7914-494F-B6ED-C3B9F7691D36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
