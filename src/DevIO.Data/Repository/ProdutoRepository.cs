@@ -11,14 +11,14 @@ namespace DevIO.Data.Repository
         {
         }
 
-        public async Task<Produto?> ObterProdutoForncedorAsync(Guid id)
+        public async Task<Produto?> ObterProdutoFornecedorAsync(Guid id)
         {
             return await Db.Produtos.AsNoTracking()
                 .Include(f => f.Fornecedor) //Join
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<IEnumerable<Produto>> ObterProdutosForncedoresAsync()
+        public async Task<IEnumerable<Produto>> ObterProdutosFornecedoresAsync()
         {
             return await Db.Produtos.AsNoTracking()
                 .Include(f => f.Fornecedor)

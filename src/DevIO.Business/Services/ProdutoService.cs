@@ -27,7 +27,7 @@ namespace DevIO.Business.Services
 
         public async Task RemoverAsync(Guid id)
         {            
-            var produto = await _produtoRepository.ObterProdutoForncedorAsync(id);
+            var produto = await _produtoRepository.ObterProdutoFornecedorAsync(id);
 
             if (produto == null)
             {
