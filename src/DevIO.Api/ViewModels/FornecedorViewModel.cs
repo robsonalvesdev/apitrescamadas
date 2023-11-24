@@ -15,8 +15,6 @@ namespace DevIO.Api.ViewModels
         [StringLength(14, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 11)]
         [DeniedValues("none", "lol")]
         public string? Documento { get; set; }
-
-        [AllowedValues("1", "2")]
         public int TipoFornecedor { get; set; }
 
         public bool Ativo { get; set; }
