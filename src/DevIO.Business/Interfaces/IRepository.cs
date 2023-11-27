@@ -8,9 +8,9 @@ namespace DevIO.Business.Interfaces
         Task<TEntity> ObterPorIdAsync(Guid id);
         Task<List<TEntity>> ObterTodos();
         Task<IEnumerable<TEntity>> BuscarAsync(Expression<Func<TEntity, bool>> predicate);
-        Task AdicionarAsync(TEntity entity);
-        Task AtualizarAsync(TEntity entity);        
-        Task RemoverAsync(Guid id);        
+        void Adicionar(TEntity entity);
+        void Atualizar(TEntity entity);        
+        void Remover(Guid id);        
         Task<int> SaveChangesAsync();
     }
 }

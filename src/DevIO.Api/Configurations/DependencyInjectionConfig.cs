@@ -3,6 +3,7 @@ using DevIO.Business.Notificacoes;
 using DevIO.Business.Services;
 using DevIO.Data.Context;
 using DevIO.Data.Repository;
+using DevIO.Data.UoW;
 
 namespace DevIO.Api.Configurations
 {
@@ -12,6 +13,7 @@ namespace DevIO.Api.Configurations
         {
             // Data
             services.AddScoped<MeuDbContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
 

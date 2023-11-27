@@ -32,10 +32,11 @@ namespace DevIO.Data.Repository
                 .FirstOrDefaultAsync(f => f.FornecedorId == fornecedorId);
         }
 
-        public async Task RemoverEnderecoFornecedorAsync(Endereco endereco)
+        public void RemoverEnderecoFornecedorAsync(Endereco endereco)
         {
             Db.Enderecos.Remove(endereco);
-            await SaveChangesAsync();
+            //Removido para implementação do Unit Of Work
+            //await SaveChangesAsync();
         }
     }
 }

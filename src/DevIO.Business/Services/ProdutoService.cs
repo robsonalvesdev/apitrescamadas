@@ -8,7 +8,7 @@ namespace DevIO.Business.Services
     {
         private readonly IProdutoRepository _produtoRepository;
 
-        public ProdutoService(IProdutoRepository produtoRepository, INotificador notificador) : base(notificador)
+        public ProdutoService(IProdutoRepository produtoRepository, INotificador notificador, IUnitOfWork unitOfWork) : base(notificador, unitOfWork)
         {
             _produtoRepository = produtoRepository;
         }
@@ -16,13 +16,24 @@ namespace DevIO.Business.Services
         public async Task AdicionarAsync(Produto produto)
         {
             if (!ExecutarValidacao<ProdutoValidation, Produto>(new(), produto)) return;
-            await _produtoRepository.AdicionarAsync(produto);
+
+            var produtoExistente = await _produtoRepository.ObterPorIdAsync(produto.Id);
+            if (produtoExistente != null)
+            {
+                Notificar("Já existe um produto com o ID informado!");
+                return;
+            }
+
+            _produtoRepository.Adicionar(produto);
+
+            await CommitAsync(); //UoW
         }
 
         public async Task AtualizarAsync(Produto produto)
         {
             if (!ExecutarValidacao<ProdutoValidation, Produto>(new(), produto)) return;
-            await _produtoRepository.AtualizarAsync(produto);
+            _produtoRepository.Atualizar(produto);
+            await CommitAsync(); //UoW
         }
 
         public async Task RemoverAsync(Guid id)
@@ -35,7 +46,9 @@ namespace DevIO.Business.Services
                 return;
             }
 
-            await _produtoRepository.RemoverAsync(id);
+            _produtoRepository.Remover(id);
+
+            await CommitAsync(); //UoW
         }
 
         public void Dispose()

@@ -9,6 +9,6 @@ namespace DevIO.Business.Interfaces
 
         // Convenção do DDD - Um repositório por agregação
         Task<Endereco> ObterEnderecoPorFornecedorAsync(Guid fornecedorId);
-        Task RemoverEnderecoFornecedorAsync(Endereco endereco);
+        void RemoverEnderecoFornecedorAsync(Endereco endereco);
     }
 }

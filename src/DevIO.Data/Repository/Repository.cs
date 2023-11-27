@@ -32,26 +32,30 @@ namespace DevIO.Data.Repository
             return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
         }
 
-        public virtual async Task AdicionarAsync(TEntiry entity)
+        public virtual void Adicionar(TEntiry entity)
         {
-            await DbSet.AddAsync(entity);
-            await SaveChangesAsync();
+            DbSet.AddAsync(entity);
+            //Removido para implementação do Unit Of Work
+            //await SaveChangesAsync();
         }
 
-        public virtual async Task AtualizarAsync(TEntiry entity)
+        public virtual void Atualizar(TEntiry entity)
         {
             DbSet.Update(entity);
-            await SaveChangesAsync();
+            //Removido para implementação do Unit Of Work
+            //await SaveChangesAsync();
         }
 
-        public virtual async Task RemoverAsync(Guid id)
+        public virtual void Remover(Guid id)
         {
             DbSet.Remove(new TEntiry { Id = id });
-            await SaveChangesAsync();
+            //Removido para implementação do Unit Of Work
+            //await SaveChangesAsync();
         }
 
         public async Task<int> SaveChangesAsync()
         {
+            // Pode ser usando em casos excepcionais - preferencia Unit Of Work
             return await Db.SaveChangesAsync();
         }
 
